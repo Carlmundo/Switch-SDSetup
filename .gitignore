@@ -1,0 +1,10 @@
+EdiZon/editor/scripts/lib/python3.5/__pycache__/*
+EdiZon/editor/scripts/lib/python3.5/encodings/__pycache__/*
+goldleaf/*
+switch/Checkpoint/saves/*
+retroarch/content_favorites.lpl
+retroarch/content_history.lpl
+retroarch/config/*
+retroarch/cores/savefiles/*
+retroarch/cores/savestates/*
+retroarch/playlists/*
