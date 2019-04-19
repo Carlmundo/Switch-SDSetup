@@ -9,3 +9,12 @@ Setting | File | Code
 Enable USB 3.0 Speed | atmosphere\system_settings.ini | usb30_force_enabled = u8!0x1
 Auto Boot to CFW | bootloader\hekate_ipl.ini | autoboot=1
 Reliable Backup/Restore Verification | bootloader\hekate_ipl.ini | verification=2
+
+## Homebrew Menu
+ - Hold ZR and select the Album to access
+ - or Install /nsp/hbmenu.nsp and run the app
+
+## RetroArch
+ - Press both analogue sticks to bring up the menu during gameplay
+ - Automatic save states are made every 10 seconds
+ - The automatic save state will load when the game is launched again
