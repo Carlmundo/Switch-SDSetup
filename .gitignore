@@ -1,3 +1,4 @@
+backup/*
 EdiZon/editor/scripts/lib/python3.5/__pycache__/*
 EdiZon/editor/scripts/lib/python3.5/encodings/__pycache__/*
 goldleaf/*
@@ -8,3 +9,5 @@ retroarch/config/*
 retroarch/cores/savefiles/*
 retroarch/cores/savestates/*
 retroarch/playlists/*
+switch/prod.keys
+switch/title.keys
