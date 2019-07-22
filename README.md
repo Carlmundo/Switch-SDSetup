@@ -11,7 +11,7 @@ Auto Boot to CFW | bootloader\hekate_ipl.ini | autoboot=1
 Reliable Backup/Restore Verification | bootloader\hekate_ipl.ini | verification=2
 
 ## Homebrew Menu
- - Hold ZR and select the Album to access
+ - Hold R and select the Album to access
  - or Install /nsp/hbmenu.nsp and run the app
 
 ## RetroArch
