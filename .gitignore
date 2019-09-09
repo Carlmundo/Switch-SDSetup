@@ -5,6 +5,7 @@ goldleaf/*
 switch/Checkpoint/config.json
 switch/Checkpoint/saves/*
 switch/Goldleaf/title/*
+switch/Goldleaf/userdata/*
 retroarch/content_favorites.lpl
 retroarch/content_history.lpl
 retroarch/config/*

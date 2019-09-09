@@ -13,8 +13,3 @@ Reliable Backup/Restore Verification | bootloader\hekate_ipl.ini | verification=
 ## Homebrew Menu
  - Hold R and select the Album to access
  - or Install /nsp/hbmenu.nsp and run the app
-
-## RetroArch
- - Press both analogue sticks to bring up the menu during gameplay
- - Automatic save states are made every 10 seconds
- - The automatic save state will load when the game is launched again
