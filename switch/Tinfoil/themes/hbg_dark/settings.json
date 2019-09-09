@@ -1,6 +1,6 @@
 {
 	"color": "FFFFFFFF",
-	"logo": "romfs:/images/tinfoil_dark.png",
+	"logo": "sdmc:/switch/tinfoil/themes/hbg_dark/logo.png",
 	"background": {
 		"color": "0000007F",
 		"image": "sdmc:/switch/tinfoil/themes/hbg_dark/bg.jpg"
