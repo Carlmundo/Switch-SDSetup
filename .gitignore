@@ -16,3 +16,4 @@ switch/incognito/*.bin
 switch/mercury/cache/*
 switch/prod.keys
 switch/title.keys
+switch/tinfoil/icons.db
