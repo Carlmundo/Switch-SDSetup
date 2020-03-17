@@ -1,7 +1,7 @@
 # SwitchSDSetup
 Get AtlasNX Kosmos updates from:
 
-https://www.sdsetup.com/console?switch#atmosphere;atmos_musthave;atmos_bootlogo;kosmos_toolkit;atmos_sigpatch;ldn_mitm;hbmenu;edizon;checkpoint;goldleaf;hekate;lockpick_rcm;
+https://sdsetup.com/console?switch#atmosphere;atmos_musthave;atmos_bootlogo;kosmos_toolkit;atmos_sysftpd;atmos-sys-con;ldn_mitm;hbmenu;checkpoint;edizon;goldleaf;hekate;lockpick_rcm;atmos_sigpatch;
 
 ## Quick Modifications
 Setting | File | Code
