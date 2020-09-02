@@ -160,7 +160,7 @@ mat3(
 const mat3 ToDCI = 
 mat3(
  2.725394,  -0.795168,   0.041242,
--1.018003,   1.689732,   0.022647,
+-1.018003,   1.689732,  -0.087639,
 -0.440163,   0.022647,   1.100929
 );
 
@@ -182,8 +182,8 @@ void main()
 {
 	vec3 c = COMPAT_TEXTURE(Source, TEX0.xy).rgb;
 	
-	float p;
-	mat3 m_out;
+	float p = 0.;
+	mat3 m_out = mat3(0.,0.,0.,0.,0.,0.,0.,0.,0.);
 	
 	if (CS == 0.0) { p = 2.4; m_out =  ToSRGB; } else
 	if (CS == 1.0) { p = 2.6; m_out =  ToDCI;  } else

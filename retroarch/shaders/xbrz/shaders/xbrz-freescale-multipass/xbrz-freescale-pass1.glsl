@@ -1,22 +1,3 @@
-// xBRZ freescale
-// based on :
-
-// 4xBRZ shader - Copyright (C) 2014-2016 DeSmuME team
-//
-// This file is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 2 of the License, or
-// (at your option) any later version.
-//
-// This file is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with the this software.  If not, see <http://www.gnu.org/licenses/>.
-
-
 /*
    Hyllian's xBR-vertex code and texel mapping
    
@@ -41,6 +22,24 @@
    THE SOFTWARE.
 
 */ 
+
+// This shader also uses code and/or concepts from xBRZ as it appears
+// in the Desmume source code. The license for which is as follows:
+
+// ****************************************************************************
+// * This file is part of the HqMAME project. It is distributed under         *
+// * GNU General Public License: http://www.gnu.org/licenses/gpl-3.0          *
+// * Copyright (C) Zenju (zenju AT gmx DOT de) - All Rights Reserved          *
+// *                                                                          *
+// * Additionally and as a special exception, the author gives permission     *
+// * to link the code of this program with the MAME library (or with modified *
+// * versions of MAME that use the same license as MAME), and distribute      *
+// * linked combinations including the two. You must obey the GNU General     *
+// * Public License in all respects for all of the code used other than MAME. *
+// * If you modify this file, you may extend this exception to your version   *
+// * of the file, but you are not obligated to do so. If you do not wish to   *
+// * do so, delete this exception statement from your version.                *
+// ****************************************************************************
 
 #if defined(VERTEX)
 
@@ -114,8 +113,8 @@ uniform COMPAT_PRECISION vec2 OutputSize;
 uniform COMPAT_PRECISION vec2 TextureSize;
 uniform COMPAT_PRECISION vec2 InputSize;
 uniform sampler2D Texture;
-uniform sampler2D OrigTexture;
-uniform COMPAT_PRECISION vec2 OrigTextureSize;
+uniform sampler2D PassPrev2Texture;
+uniform COMPAT_PRECISION vec2 PassPrev2TextureSize;
 COMPAT_VARYING vec4 TEX0;
 
 // compatibility #defines
@@ -124,7 +123,7 @@ COMPAT_VARYING vec4 TEX0;
 
 #define SourceSize vec4(TextureSize, 1.0 / TextureSize) //either TextureSize or InputSize
 #define OutSize vec4(OutputSize, 1.0 / OutputSize)
-#define OriginalSize vec4(OrigTextureSize, 1.0 / OrigTextureSize)
+#define OriginalSize vec4(PassPrev2TextureSize, 1.0 / PassPrev2TextureSize)
 
 #define BLEND_NONE 0.
 #define BLEND_NORMAL 1.
@@ -168,7 +167,7 @@ float get_left_ratio(vec2 center, vec2 origin, vec2 direction, vec2 scale)
 #define eq(a,b)  (a == b)
 #define neq(a,b) (a != b)
 
-#define P(x,y) COMPAT_TEXTURE(OrigTexture, coord + OriginalSize.zw * vec2(x, y)).rgb
+#define P(x,y) COMPAT_TEXTURE(PassPrev2Texture, coord + OriginalSize.zw * vec2(x, y)).rgb
 
 void main()
 {

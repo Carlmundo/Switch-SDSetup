@@ -92,7 +92,7 @@
 #define fmod(x,y) mod(x,y)
 #define ddx(c) dFdx(c)
 #define ddy(c) dFdy(c)
-#define atan2(x,y) atan(y,x)
+#define atan2(x,y) atan(x,y)
 #define rsqrt(c) inversesqrt(c)
 
 #if defined(GL_ES)
@@ -4551,7 +4551,7 @@ float3 tex2Daa_debug_dynamic(const sampler2D tex, const float2 tex_uv,
 inline float3 tex2Daa(const sampler2D tex, const float2 tex_uv,
     const float2x2 pixel_to_tex_uv, const float frame)
 {
-#define DEBUG
+//#define DEBUG
 #ifdef DEBUG
 	return tex2Daa_subpixel_weights_only(
             tex, tex_uv, pixel_to_tex_uv);
@@ -5363,23 +5363,23 @@ void main()
         const float2 sin_tilt = sin(geom_tilt_angle);
         const float2 cos_tilt = cos(geom_tilt_angle);
         //  Conceptual breakdown:
-        //      static const float3x3 rot_x_matrix = float3x3(
-        //          1.0, 0.0, 0.0,
-        //          0.0, cos_tilt.y, -sin_tilt.y,
-        //          0.0, sin_tilt.y, cos_tilt.y);
-        //      static const float3x3 rot_y_matrix = float3x3(
-        //          cos_tilt.x, 0.0, sin_tilt.x,
-        //          0.0, 1.0, 0.0,
-        //          -sin_tilt.x, 0.0, cos_tilt.x);
-        //      static const float3x3 local_to_global =
-        //          mul(rot_y_matrix, rot_x_matrix);
-        //      static const float3x3 global_to_local =
-        //          transpose(local_to_global);
+              static const float3x3 rot_x_matrix = float3x3(
+                  1.0, 0.0, 0.0,
+                  0.0, cos_tilt.y, -sin_tilt.y,
+                  0.0, sin_tilt.y, cos_tilt.y);
+              static const float3x3 rot_y_matrix = float3x3(
+                  cos_tilt.x, 0.0, sin_tilt.x,
+                  0.0, 1.0, 0.0,
+                  -sin_tilt.x, 0.0, cos_tilt.x);
+              static const float3x3 local_to_global =
+                  mul(rot_y_matrix, rot_x_matrix);
+/*              static const float3x3 global_to_local =
+                  transpose(local_to_global);
         const float3x3 local_to_global = float3x3(
             cos_tilt.x, sin_tilt.y*sin_tilt.x, cos_tilt.y*sin_tilt.x,
-            0.0, cos_tilt.y, -sin_tilt.y,
-            -sin_tilt.x, sin_tilt.y*cos_tilt.x, cos_tilt.y*cos_tilt.x);
-        //  This is a pure rotation, so transpose = inverse:
+            0.0, cos_tilt.y, sin_tilt.y,
+            sin_tilt.x, sin_tilt.y*cos_tilt.x, cos_tilt.y*cos_tilt.x);
+*/        //  This is a pure rotation, so transpose = inverse:
         const float3x3 global_to_local = transpose(local_to_global);
         //  Decompose the matrix into 3 float3's for output:
         global_to_local_row0 = float3(global_to_local[0][0], global_to_local[0][1], global_to_local[0][2]);//._m00_m01_m02);

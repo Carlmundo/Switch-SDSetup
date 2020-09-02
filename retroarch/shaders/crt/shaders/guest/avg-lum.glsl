@@ -1,8 +1,8 @@
 #version 130
 /*
-   Average Luminance Shader, Smart Smoothing Difference Shader
+   Average Luminance Shader
    
-   Copyright (C) 2018-2019 guest(r) - guest.r@gmail.com
+   Copyright (C) 2018-2020 guest(r) - guest.r@gmail.com
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -22,8 +22,6 @@
 */
 
 // Parameter lines go here:
-
-#pragma parameter STH "Smart Smoothing Threshold" 0.7 0.4 1.2 0.05
 
 #if defined(VERTEX)
 
@@ -65,16 +63,6 @@ void main()
 
 #elif defined(FRAGMENT)
 
-#if __VERSION__ >= 130
-#define COMPAT_VARYING in
-#define COMPAT_TEXTURE texture
-out vec4 FragColor;
-#else
-#define COMPAT_VARYING varying
-#define FragColor gl_FragColor
-#define COMPAT_TEXTURE texture2D
-#endif
-
 #ifdef GL_ES
 #ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
@@ -86,6 +74,16 @@ precision mediump float;
 #define COMPAT_PRECISION
 #endif
 
+#if __VERSION__ >= 130
+#define COMPAT_VARYING in
+#define COMPAT_TEXTURE texture
+out COMPAT_PRECISION vec4 FragColor;
+#else
+#define COMPAT_VARYING varying
+#define FragColor gl_FragColor
+#define COMPAT_TEXTURE texture2D
+#endif
+
 uniform COMPAT_PRECISION int FrameDirection;
 uniform COMPAT_PRECISION int FrameCount;
 uniform COMPAT_PRECISION vec2 OutputSize;
@@ -95,7 +93,6 @@ uniform sampler2D Texture;
 uniform sampler2D PassPrev2Texture;
 
 COMPAT_VARYING vec4 TEX0;
-// in variables go here as COMPAT_VARYING whatever
 
 // compatibility #defines
 #define Source Texture
@@ -106,21 +103,15 @@ COMPAT_VARYING vec4 TEX0;
 
 #ifdef PARAMETER_UNIFORM
 // All parameter floats need to have COMPAT_PRECISION in front of them
-uniform COMPAT_PRECISION float STH;
-#else
-	#define STH 0.7
-#endif 
 
-float df (vec3 A, vec3 B)
-{
-	float diff = length(A-B);
-	float luma = clamp(length(0.5*min(A,B) + 0.25*(A+B) + 1e-8), 0.0001, 1.0);
-	float diff1 = diff/luma;
-	return 1.0 - clamp(7.0*(max(1.5*diff,diff1)-STH), 0.0, 1.0);
-}
+#else
+
+#endif 
 
 void main()
 {
+	if (vTexCoord.x > 0.1 || vTexCoord.y > 0.1) discard;
+	
 	float xtotal = floor(InputSize.x/64.0);
 	float ytotal = floor(InputSize.y/64.0);
 	
@@ -134,28 +125,12 @@ void main()
 	{
 		for (float j = 0.0; j <= ytotal; j++)
 			{
-				ltotal+= max(0.25, length(textureLod(Source, i*dx + j*dy + offset, 6.0).rgb));
+				ltotal+= max(0.15, length(textureLod(Source, i*dx + j*dy + offset, 6.0).rgb));
 			}
 	}
    
 	ltotal = 0.577350269 * ltotal / ((xtotal+1.0)*(ytotal+1.0));
-
-	dx  = vec2(SourceSize.z, 0.0);	
-	dy  = vec2(0.0, SourceSize.w);	
-
-	vec3 l1 = COMPAT_TEXTURE(PassPrev2Texture, TEX0.xy -dx).xyz;
-	vec3 ct = COMPAT_TEXTURE(PassPrev2Texture, TEX0.xy    ).xyz;
-	vec3 r1 = COMPAT_TEXTURE(PassPrev2Texture, TEX0.xy +dx).xyz;
-	vec3 t1 = COMPAT_TEXTURE(PassPrev2Texture, TEX0.xy -dy).xyz;
-	vec3 b1 = COMPAT_TEXTURE(PassPrev2Texture, TEX0.xy +dy).xyz;	
 	
-	float dl = df(ct, l1);
-	float dr = df(ct, r1);
-	float dt = df(ct, t1);
-	float db = df(ct, b1);
-	
-	float resx = dl; float resy = dr; float resz = floor(9.0*dt)/10.0 + floor(9.0*db)/100.0;
-	
-	FragColor = vec4(resx,resy,resz,pow(ltotal, 0.65));
+	FragColor = vec4(pow(ltotal, 0.65));
 } 
 #endif
