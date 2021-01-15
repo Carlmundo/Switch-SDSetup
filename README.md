@@ -1,8 +1,9 @@
 # SwitchSDSetup
 ## Updates
  * [Atmosphere](https://github.com/Atmosphere-NX/Atmosphere/releases)
- * [Sigpatches](https://gbatemp.net/threads/sigpatches-for-atmosphere-0-13-0.567542/)
+ * [Sigpatches](https://github.com/eXhumer/patches/releases)
  * [Hekate](https://github.com/CTCaer/hekate/releases)
+ * [Firmware](https://darthsternie.net/switch-firmwares/)
 
 ## Usage
 ### Boot
