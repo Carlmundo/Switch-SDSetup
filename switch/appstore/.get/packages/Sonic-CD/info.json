@@ -1,0 +1,11 @@
+{
+  "title": "Sonic-CD-11-Decompilation",
+  "author": "heyjoeway",
+  "category": "game",
+  "version": "1.0.0",
+  "url": "https://github.com/heyjoeway/Sonic-CD-11-Decompilation",
+  "license": "n/a",
+  "description": "A Full Decompilation of Sonic CD 2011",
+  "details": "A full decompilation of Sonic CD 2011, based on the PC remake with improvements & tweaks from the mobile remakes. Ported to the Switch.\\n\\nSUPPORT THE OFFICIAL RELEASE OF SONIC CD\\nWithout assets from the official release this decompilation will not run.\\n\\nYou can get the official release of sonic cd from:\\n\\nWindows (Via Steam)\\nIOS (Via the App Store)\\nAndroid (Via Google Play)\\nAndroid (Via Amazon)\\nEven if your platform isn't supported by the official releases, buy it for the assets (you don't need to run the official release, you just need the game assets.)\\n\\nInstallation Instructions\\nYou can find downloads in releases.\\n\\nMake sure your Switch can run homebrew.\\nExtract the contents of the zip to the root of your SD card.\\nCopy the assets to /switch/scd2011 on your Switch's SD card. You will need the following files/folders:\\nhelp (folder, optional as How to Play is broken)\\nvideos (folder)\\nData.rsdk\\nfonts.arc\\nimages.arc\\nsounds.arc\\nStrings.str\\nStart Sonic CD via hbmenu (or whatever method you prefer).\\nNOTE: It is recommended full RAM access. This means you shouldn't launch hbmenu from the album applet when running this. With the latest Atmosphere build and its default config, you can hold R while starting any game to open hbmenu with full RAM access. If you have any issues make sure the game has full RAM access before reporting them; launching as an applet will not be supported.",
+  "changelog": ""
+}
